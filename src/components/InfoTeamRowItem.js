@@ -1,4 +1,5 @@
 import { View, Text, Image, StyleSheet } from "react-native";
+import { textColors } from "../style/colors";
 
 const InfoTeamRowItem = ({ label, value, isImage }) => {
   return (
@@ -29,11 +30,11 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     fontSize: 16,
-    color: "white",
+    color: textColors.primary,
   },
   infoValue: {
     fontSize: 16,
-    color: "white",
+    color: textColors.primary,
     fontWeight: "bold",
   },
   infoBadgeImage: {

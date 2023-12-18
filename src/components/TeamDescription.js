@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import InfoTeamRowItem from "./InfoTeamRowItem";
+import { backgroundColor, textColors } from "../style/colors";
 
 const TeamDescription = ({ team }) => {
   const { team_name, team_country, team_founded, team_badge } = team;
@@ -20,12 +21,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     width: "100%",
-    backgroundColor: "#303030",
+    backgroundColor: backgroundColor.primary,
   },
   textTitle: {
     paddingVertical: 30,
     fontSize: 20,
-    color: "white",
+    color: textColors.primary,
     textAlign: "center",
   },
 });

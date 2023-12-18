@@ -6,6 +6,7 @@ import TeamDescription from "../components/TeamDescription";
 
 import * as data from "../assets/matches.json";
 import InfoTeamRowItem from "../components/InfoTeamRowItem";
+import { backgroundColor, textColors } from "../style/colors";
 
 const ResultScreen = ({ route }) => {
   const [matches, setMatches] = useState([]);
@@ -62,7 +63,7 @@ const ResultScreen = ({ route }) => {
             </View>
             <InfoTeamRowItem label={"Time:"} value={item.match_time} />
             <InfoTeamRowItem label={"Date:"} value={item.match_date} />
-            
+
             <InfoDivider size={5} />
           </View>
         ))}
@@ -78,7 +79,7 @@ const ResultScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
-    backgroundColor: "#303030",
+    backgroundColor: backgroundColor.primary,
   },
   container: {
     flex: 1,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 100,
     justifyContent: "center",
-    backgroundColor: "#303030",
+    backgroundColor: backgroundColor.primary,
   },
   matchContainer: {
     flex: 1,
@@ -104,12 +105,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
-    color: "white",
+    color: textColors.primary,
   },
   textMessage: {
     paddingVertical: 30,
     fontSize: 20,
-    color: "white",
+    color: textColors.primary,
     textAlign: "center",
   },
   flagLogoImage: {

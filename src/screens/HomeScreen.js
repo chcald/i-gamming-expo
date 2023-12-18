@@ -7,6 +7,7 @@ import * as data from "../assets/teams.json";
 import Autocomplete from "react-native-autocomplete-input";
 import TextInputTeam from "../components/TextInputTeam";
 import RenderItemTeam from "../components/RenderItemTeam";
+import { backgroundColor, textColors } from "../style/colors";
 
 const HomeScreen = () => {
   const [teams, setTeams] = useState([]);
@@ -55,10 +56,6 @@ const HomeScreen = () => {
         <Autocomplete
           autoCapitalize="none"
           autoCorrect={false}
-          inputContainerStyle={{
-            backgroundColor: "#303030",
-          }}
-          listContainerStyle={{ borderColor:'blue',backgroundColor: "black" }}
           style={styles.autocompleteStyle}
           placeholder={placeholder}
           onFocus={() => {
@@ -78,13 +75,11 @@ const HomeScreen = () => {
           // Which will trigger the findFootballTeam method
           // To show the suggestions
           onChangeText={(text) => findFootballTeam(text)}
-          placeholderTextColor="white"
           flatListProps={{
             keyExtractor: (_, idx) => idx.toString(),
-            renderItem: ({ item, index }) => (
+            renderItem: ({ item }) => (
               <RenderItemTeam
                 onPress={onPressTeam}
-                isLast={filteredTeams?.length !== index + 1}
                 item={item}
               />
             ),
@@ -101,21 +96,17 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     marginTop: 40,
-    backgroundColor: "#303030",
-  },
-  autocompleteContainer: {
-    backgroundColor: "#303030",
-    borderWidth: 0,
+    backgroundColor: backgroundColor.primary
   },
   autocompleteStyle: {
-    backgroundColor: "#575757",
-    color: "white",
+    backgroundColor: backgroundColor.secondary,
+    color: textColors.primary,
     fontSize: 18,
     paddingLeft: 10,
     justifyContent: "center",
   },
   textTitle: {
-    color: "white",
+    color: textColors.primary,
     paddingBottom: 5,
     fontSize: 20,
   },

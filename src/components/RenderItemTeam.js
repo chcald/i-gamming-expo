@@ -1,14 +1,10 @@
 import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native";
+import { backgroundColor, textColors } from "../style/colors";
 
-const RenderItemTeam = ({ onPress, item, isLast }) => {
+const RenderItemTeam = ({ onPress, item }) => {
   return (
     <TouchableOpacity onPress={() => onPress(item)}>
-      <View
-        style={[
-          styles.itemContainer,
-          isLast && styles.itemBorderBottom,
-        ]}
-      >
+      <View style={styles.itemContainer}>
         <View style={styles.itemImageContainer}>
           <Image
             style={styles.itemImage}
@@ -30,10 +26,8 @@ const styles = StyleSheet.create({
     padding: 10,
     gap: 10,
     alignItems: "center",
-    backgroundColor: "#303030",
-  },
-  itemBorderBottom: {
-    borderBottomColor: "#575757",
+    backgroundColor: backgroundColor.primary,
+    borderBottomColor: backgroundColor.secondary,
     borderBottomWidth: 1,
   },
   itemText: {
@@ -42,17 +36,17 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     margin: 2,
     padding: 8,
-    color: "white",
+    color: textColors.primary,
   },
   itemImageContainer: {
     borderRadius: 5,
     padding: 5,
-    backgroundColor: "white",
+    backgroundColor: backgroundColor.image
   },
   itemImage: {
     width: 30,
     height: 30,
-    resizeMode: "stretch",
+    resizeMode: "stretch"
   },
 });
 
