@@ -1,0 +1,130 @@
+{
+  "teams": [
+    {
+      "team_key": "73",
+      "team_name": "Atletico Madrid",
+      "team_country": "Spain",
+      "team_founded": "1903",
+      "team_badge": "https://apiv3.apifootball.com/badges/73_atletico-madrid.jpg"
+    },
+    {
+      "team_key": "76",
+      "team_name": "Real Madrid",
+      "team_country": "Spain",
+      "team_founded": "1902",
+      "team_badge": "https://apiv3.apifootball.com/badges/76_real-madrid.jpg"
+    },
+    {
+      "team_key": "89",
+      "team_name": "Sevilla",
+      "team_country": "Spain",
+      "team_founded": "1890",
+      "team_badge": "https://apiv3.apifootball.com/badges/89_sevilla.jpg"
+    },
+    {
+      "team_key": "97",
+      "team_name": "Barcelona",
+      "team_country": "Spain",
+      "team_founded": "1899",
+      "team_badge": "https://apiv3.apifootball.com/badges/97_barcelona.jpg"
+    },
+    {
+      "team_key": "80",
+      "team_name": "Manchester City",
+      "team_country": "England",
+      "team_founded": "1880",
+      "team_badge": "https://apiv3.apifootball.com/badges/80_manchester-city.jpg"
+    },
+    {
+      "team_key": "84",
+      "team_name": "Liverpool",
+      "team_country": "England",
+      "team_founded": "1892",
+      "team_badge": "https://apiv3.apifootball.com/badges/84_liverpool.jpg"
+    },
+    {
+      "team_key": "88",
+      "team_name": "Chelsea",
+      "team_country": "England",
+      "team_founded": "1905",
+      "team_badge": "https://apiv3.apifootball.com/badges/88_chelsea.jpg"
+    },
+    {
+      "team_key": "102",
+      "team_name": "Manchester United",
+      "team_country": "England",
+      "team_founded": "1878",
+      "team_badge": "https://apiv3.apifootball.com/badges/102_manchester-united.jpg"
+    },
+    {
+      "team_key": "141",
+      "team_name": "Arsenal",
+      "team_country": "England",
+      "team_founded": "1886",
+      "team_badge": "https://apiv3.apifootball.com/badges/141_arsenal.jpg"
+    },
+    {
+      "team_key": "164",
+      "team_name": "Tottenham Hotspur",
+      "team_country": "England",
+      "team_founded": "1882",
+      "team_badge": "https://apiv3.apifootball.com/badges/164_tottenham-hotspur.jpg"
+    },
+    {
+      "team_key": "79",
+      "team_name": "Inter Milan",
+      "team_country": "Italy",
+      "team_founded": "1908",
+      "team_badge": "https://apiv3.apifootball.com/badges/79_inter-milan.jpg"
+    },
+    {
+      "team_key": "93",
+      "team_name": "Lazio",
+      "team_country": "Italy",
+      "team_founded": "1900",
+      "team_badge": "https://apiv3.apifootball.com/badges/93_lazio.jpg"
+    },
+    {
+      "team_key": "96",
+      "team_name": "Juventus",
+      "team_country": "Italy",
+      "team_founded": "1897",
+      "team_badge": "https://apiv3.apifootball.com/badges/96_juventus.jpg"
+    },
+    {
+      "team_key": "139",
+      "team_name": "Roma",
+      "team_country": "Italy",
+      "team_founded": "1927",
+      "team_badge": "https://apiv3.apifootball.com/badges/139_roma.jpg"
+    },
+    {
+      "team_key": "152",
+      "team_name": "Napoli",
+      "team_country": "Italy",
+      "team_founded": "1904 / 192",
+      "team_badge": "https://apiv3.apifootball.com/badges/152_napoli.jpg"
+    },
+    {
+      "team_key": "159",
+      "team_name": "AC Milan",
+      "team_country": "Italy",
+      "team_founded": "1899",
+      "team_badge": "https://apiv3.apifootball.com/badges/159_ac-milan.jpg"
+    },
+    {
+      "team_key": "4973",
+      "team_name": "Torino",
+      "team_country": "Italy",
+      "team_founded": "1906",
+      "team_badge": "https://apiv3.apifootball.com/badges/4973_torino.jpg"
+    },
+    {
+      "team_key": "4974",
+      "team_name": "Fiorentina",
+      "team_country": "Italy",
+      "team_founded": "1926",
+      "team_badge": "https://apiv3.apifootball.com/badges/4974_fiorentina.jpg"
+    }
+  ]
+}
