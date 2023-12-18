@@ -48,7 +48,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#303030" }}>
+    <SafeAreaView style={styles.safeAreaViewContainer}>
       <View style={styles.container}>
         <View>
           <Text style={styles.textTitle}>Team:</Text>
@@ -78,10 +78,7 @@ const HomeScreen = () => {
           flatListProps={{
             keyExtractor: (_, idx) => idx.toString(),
             renderItem: ({ item }) => (
-              <RenderItemTeam
-                onPress={onPressTeam}
-                item={item}
-              />
+              <RenderItemTeam onPress={onPressTeam} item={item} />
             ),
           }}
           renderTextInput={(props) => <TextInputTeam {...props} />}
@@ -92,14 +89,18 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  safeAreaViewContainer: {
+    flex: 1,
+    backgroundColor: backgroundColor.primary,
+  },
   container: {
     flex: 1,
     padding: 16,
     marginTop: 40,
-    backgroundColor: backgroundColor.primary
+    backgroundColor: backgroundColor.primary,
   },
   autocompleteStyle: {
-    backgroundColor: backgroundColor.secondary,
+   backgroundColor: backgroundColor.secondary,
     color: textColors.primary,
     fontSize: 18,
     paddingLeft: 10,
