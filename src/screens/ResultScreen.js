@@ -63,7 +63,31 @@ const ResultScreen = ({ route }) => {
             </View>
             <InfoTeamRowItem label={"Time:"} value={item.match_time} />
             <InfoTeamRowItem label={"Date:"} value={item.match_date} />
-
+            <InfoTeamRowItem label={"Referee:"} value={item.match_referee} />
+            <InfoTeamRowItem
+              label={"Match place:"}
+              value={item.match_hometeam_name}
+            />
+            <InfoDivider />
+            <Text style={styles.textItem}>Goal Scorer</Text>
+            {item.goalscorer.map((gs, index) => (
+              <View key={index}>
+                <InfoTeamRowItem
+                  label={"Home Scorer:"}
+                  value={gs.home_scorer || "no info"}
+                />
+                <InfoTeamRowItem
+                  label={"Home Assist:"}
+                  value={gs.home_assist || "no info"}
+                />
+                <InfoTeamRowItem
+                  label={"Score:"}
+                  value={gs.score || "no info"}
+                />
+                <InfoTeamRowItem label={"Time:"} value={`${gs.time}'`} />
+                <InfoDivider />
+              </View>
+            ))}
             <InfoDivider size={5} />
           </View>
         ))}
@@ -105,6 +129,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+    textAlign: "center",
     color: textColors.primary,
   },
   textMessage: {
