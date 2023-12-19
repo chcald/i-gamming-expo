@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 import InfoDivider from "../components/InfoDivider";
 import TeamDescription from "../components/TeamDescription";
+import InfoTeamRowItem from "../components/InfoTeamRowItem";
+import TeamMatchMainInfo from "../components/TeamMatchMainInfo";
 
 import * as data from "../assets/matches.json";
-import InfoTeamRowItem from "../components/InfoTeamRowItem";
+
 import { backgroundColor, textColors } from "../style/colors";
 
 const ResultScreen = ({ route }) => {
@@ -28,41 +30,20 @@ const ResultScreen = ({ route }) => {
       <View style={styles.container}>
         {filteredMatches.map((item, index) => (
           <View key={index} style={styles.matchContainer}>
-            <View style={styles.rowContainer}>
-              <Image
-                style={styles.flagLogoImage}
-                source={{
-                  uri: item.country_logo,
-                }}
-              />
-              <Text style={styles.textItem}>{item.country_name}</Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Image
-                style={styles.leagueLogoImage}
-                source={{
-                  uri: item.league_logo,
-                }}
-              />
-              <Text style={styles.textItem}>{item.league_name}</Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Image
-                style={styles.teamLogoImage}
-                source={{
-                  uri: item.team_home_badge,
-                }}
-              />
-              <Text style={styles.textItem}>vs</Text>
-              <Image
-                style={styles.teamLogoImage}
-                source={{
-                  uri: item.team_away_badge,
-                }}
-              />
-            </View>
+            <TeamMatchMainInfo
+              match_hometeam_name={item.match_hometeam_name}
+              team_home_badge={item.team_home_badge}
+              match_awayteam_name={item.match_awayteam_name}
+              team_away_badge={item.team_away_badge}
+              league_logo={item.league_logo}
+              country_logo={item.country_logo}
+              league_name={item.league_name}
+              country_name={item.country_name}
+            />
+            <InfoDivider />
             <InfoTeamRowItem label={"Time:"} value={item.match_time} />
             <InfoTeamRowItem label={"Date:"} value={item.match_date} />
+            <InfoTeamRowItem label={"League year:"} value={item.league_year} />
             <InfoTeamRowItem label={"Referee:"} value={item.match_referee} />
             <InfoTeamRowItem
               label={"Match place:"}
@@ -118,17 +99,9 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     width: "100%",
   },
-  rowContainer: {
-    flex: 1,
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 10,
-  },
   textItem: {
     padding: 10,
     fontSize: 18,
-    height: 44,
     textAlign: "center",
     color: textColors.primary,
   },
@@ -137,23 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: textColors.primary,
     textAlign: "center",
-  },
-  flagLogoImage: {
-    width: 20,
-    height: 15,
-    marginTop: 14,
-    resizeMode: "stretch",
-  },
-  leagueLogoImage: {
-    width: 40,
-    height: 35,
-    marginTop: -8,
-    resizeMode: "stretch",
-  },
-  teamLogoImage: {
-    width: 30,
-    height: 30,
-    resizeMode: "stretch",
   },
 });
 

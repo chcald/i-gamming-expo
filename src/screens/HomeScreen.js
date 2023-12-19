@@ -66,7 +66,7 @@ const HomeScreen = () => {
         data={filteredTeams}
         // Default value if you want to set something in input
         defaultValue={
-          JSON.stringify(selectedValue) === "{}" ? "" : selectedValue.team_name
+          Object.keys(selectedValue).length === 0 ? "" : selectedValue.team_name
         }
         // Onchange of the text changing the state of the query
         // Which will trigger the findFootballTeam method
