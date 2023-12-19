@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import { StyleSheet, Text, View } from "react-native";
@@ -6,14 +6,14 @@ import { StyleSheet, Text, View } from "react-native";
 import * as data from "../assets/teams.json";
 import Autocomplete from "react-native-autocomplete-input";
 import TextInputTeam from "../components/TextInputTeam";
-import RenderItemTeam from "../components/RenderItemTeam";
+import ItemTeam from "../components/ItemTeam";
 import { backgroundColor, textColors } from "../style/colors";
 
 const HomeScreen = () => {
   const [teams, setTeams] = useState([]);
-  const [filteredTeams, setFilteredTeams] = useState([]);
   const [selectedValue, setSelectedValue] = useState({});
   const [placeholder, setPlaceholder] = useState("Enter the team name");
+  const [query, setQuery] = useState("");
 
   const navigation = useNavigation();
 
@@ -21,23 +21,21 @@ const HomeScreen = () => {
     setTeams(data?.teams);
   }, []);
 
-  const findFootballTeam = (query) => {
+  const suggestions = useMemo(() => {
     if (query) {
       // Making a case insensitive regular expression
       const regex = new RegExp(`${query.trim()}`, "i");
       // Setting the filtered team array according the query
-      setFilteredTeams(
-        teams?.filter((team) => team?.team_name.search(regex) >= 0)
-      );
+
+      return teams?.filter((team) => team?.team_name.search(regex) >= 0);
     } else {
       // If the query is null then return blank
-      setFilteredTeams([]);
+      return [];
     }
-  };
+  }, [query, teams]);
 
   const onPressTeam = (item) => {
     setSelectedValue(item);
-    setFilteredTeams([]);
 
     navigation.navigate({
       name: "ResultScreen",
@@ -63,21 +61,22 @@ const HomeScreen = () => {
         }}
         containerStyle={styles.autocompleteContainer}
         // Data to show in suggestion
-        data={filteredTeams}
+        data={suggestions}
         // Default value if you want to set something in input
         defaultValue={
           Object.keys(selectedValue).length === 0 ? "" : selectedValue.team_name
         }
         // Onchange of the text changing the state of the query
-        // Which will trigger the findFootballTeam method
+        // Which will trigger the useMemo method
         // To show the suggestions
-        onChangeText={(text) => findFootballTeam(text)}
+        onChangeText={setQuery}
         flatListProps={{
           keyExtractor: (_, idx) => idx.toString(),
           renderItem: ({ item }) => (
-            <RenderItemTeam onPress={onPressTeam} item={item} />
+            <ItemTeam onPress={onPressTeam} item={item} />
           ),
         }}
+        placeholderTextColor={textColors.primary}
         renderTextInput={(props) => <TextInputTeam {...props} />}
       />
     </View>
