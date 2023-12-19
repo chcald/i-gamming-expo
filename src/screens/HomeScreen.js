@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import * as data from "../assets/teams.json";
 import Autocomplete from "react-native-autocomplete-input";
@@ -48,51 +48,43 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeAreaViewContainer}>
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.textTitle}>Team:</Text>
-        </View>
-        <Autocomplete
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={styles.autocompleteStyle}
-          placeholder={placeholder}
-          onFocus={() => {
-            setSelectedValue({});
-            setPlaceholder("");
-          }}
-          containerStyle={styles.autocompleteContainer}
-          // Data to show in suggestion
-          data={filteredTeams}
-          // Default value if you want to set something in input
-          defaultValue={
-            JSON.stringify(selectedValue) === "{}"
-              ? ""
-              : selectedValue.team_name
-          }
-          // Onchange of the text changing the state of the query
-          // Which will trigger the findFootballTeam method
-          // To show the suggestions
-          onChangeText={(text) => findFootballTeam(text)}
-          flatListProps={{
-            keyExtractor: (_, idx) => idx.toString(),
-            renderItem: ({ item }) => (
-              <RenderItemTeam onPress={onPressTeam} item={item} />
-            ),
-          }}
-          renderTextInput={(props) => <TextInputTeam {...props} />}
-        />
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.textTitle}>Team:</Text>
       </View>
-    </SafeAreaView>
+      <Autocomplete
+        autoCapitalize="none"
+        autoCorrect={false}
+        style={styles.autocompleteStyle}
+        placeholder={placeholder}
+        onFocus={() => {
+          setSelectedValue({});
+          setPlaceholder("");
+        }}
+        containerStyle={styles.autocompleteContainer}
+        // Data to show in suggestion
+        data={filteredTeams}
+        // Default value if you want to set something in input
+        defaultValue={
+          JSON.stringify(selectedValue) === "{}" ? "" : selectedValue.team_name
+        }
+        // Onchange of the text changing the state of the query
+        // Which will trigger the findFootballTeam method
+        // To show the suggestions
+        onChangeText={(text) => findFootballTeam(text)}
+        flatListProps={{
+          keyExtractor: (_, idx) => idx.toString(),
+          renderItem: ({ item }) => (
+            <RenderItemTeam onPress={onPressTeam} item={item} />
+          ),
+        }}
+        renderTextInput={(props) => <TextInputTeam {...props} />}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeAreaViewContainer: {
-    flex: 1,
-    backgroundColor: backgroundColor.primary,
-  },
   container: {
     flex: 1,
     padding: 16,
@@ -100,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColor.primary,
   },
   autocompleteStyle: {
-   backgroundColor: backgroundColor.secondary,
+    backgroundColor: backgroundColor.secondary,
     color: textColors.primary,
     fontSize: 18,
     paddingLeft: 10,
