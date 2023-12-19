@@ -1,7 +1,7 @@
 import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native";
 import { backgroundColor, textColors } from "../style/colors";
 
-const ItemTeam = ({ onPress, item }) => {
+const TeamItem = ({ onPress, item }) => {
   return (
     <TouchableOpacity onPress={() => onPress(item)}>
       <View style={styles.itemContainer}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ItemTeam;
+export default TeamItem;

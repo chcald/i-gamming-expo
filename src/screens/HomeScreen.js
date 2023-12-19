@@ -5,8 +5,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 import * as data from "../assets/teams.json";
 import Autocomplete from "react-native-autocomplete-input";
-import TextInputTeam from "../components/TextInputTeam";
-import ItemTeam from "../components/ItemTeam";
+import TeamTextInput from "../components/TeamTextInput";
+import TeamItem from "../components/TeamItem";
 import { backgroundColor, textColors } from "../style/colors";
 
 const HomeScreen = () => {
@@ -25,8 +25,8 @@ const HomeScreen = () => {
     if (query) {
       // Making a case insensitive regular expression
       const regex = new RegExp(`${query.trim()}`, "i");
+      
       // Setting the filtered team array according the query
-
       return teams?.filter((team) => team?.team_name.search(regex) >= 0);
     } else {
       // If the query is null then return blank
@@ -73,11 +73,11 @@ const HomeScreen = () => {
         flatListProps={{
           keyExtractor: (_, idx) => idx.toString(),
           renderItem: ({ item }) => (
-            <ItemTeam onPress={onPressTeam} item={item} />
+            <TeamItem onPress={onPressTeam} item={item} />
           ),
         }}
         placeholderTextColor={textColors.primary}
-        renderTextInput={(props) => <TextInputTeam {...props} />}
+        renderTextInput={(props) => <TeamTextInput {...props} />}
       />
     </View>
   );

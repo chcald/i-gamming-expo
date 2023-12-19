@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import Icon from "@expo/vector-icons/FontAwesome";
 
-const TextInputTeam = (props) => {
+const TeamTextInput = (props) => {
   const inputRef = useRef();
 
   return (
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TextInputTeam;
+export default TeamTextInput;
