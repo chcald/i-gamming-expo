@@ -8,16 +8,46 @@ import TeamMatchMainInfo from "../components/TeamMatchMainInfo";
 
 import * as data from "../assets/matches.json";
 
+type Matches = {
+  match_id?: string;
+  country_id?: string;
+  country_name?: string;
+  team_key?: string;
+  league_id?: string;
+  league_name?: string;
+  match_date?: string;
+  match_time?: string;
+  match_hometeam_name?: string;
+  match_awayteam_name?: string;
+  match_stadium?: string;
+  match_referee?: string;
+  team_home_badge?: string;
+  team_away_badge?: string;
+  league_logo?: string;
+  country_logo?: string;
+  league_year?: string;
+  score?: string;
+  goalscorer?: GoalScorer[];
+};
+
+type GoalScorer = {
+  time?: string;
+  home_scorer?: string;
+  home_assist?: string;
+  score?: string;
+  away_scorer?: string;
+  away_assist?: string;
+};
+
 import { backgroundColor, textColors } from "../style/colors";
+import { Team } from "./HomeScreen";
 
 const ResultScreen = ({ route }) => {
-  const [matches, setMatches] = useState([]);
-  const [filteredMatches, setFilteredMatches] = useState([]);
+  const [matches, setMatches] = useState<Array<Matches>>([]);
+  const [filteredMatches, setFilteredMatches] = useState<Array<Matches>>([]);
 
-  const { team } = route.params;
-  useEffect(() => {
-    setMatches(data.matches);
-  }, []);
+  const { team }: { team: Team } = route.params;
+  useEffect(() => setMatches(data.matches), []);
 
   useEffect(() => {
     setFilteredMatches(
@@ -47,7 +77,7 @@ const ResultScreen = ({ route }) => {
             <InfoTeamRowItem label={"Referee:"} value={item.match_referee} />
             <InfoTeamRowItem
               label={"Match place:"}
-              value={item.match_hometeam_name}
+              value={item.match_stadium}
             />
             <InfoDivider />
             <Text style={styles.textItem}>Goal Scorer</Text>
@@ -60,6 +90,14 @@ const ResultScreen = ({ route }) => {
                 <InfoTeamRowItem
                   label={"Home Assist:"}
                   value={gs.home_assist || "no info"}
+                />
+                <InfoTeamRowItem
+                  label={"Away Assist:"}
+                  value={gs.away_assist || "no info"}
+                />
+                <InfoTeamRowItem
+                  label={"Away Scorer:"}
+                  value={gs.away_scorer || "no info"}
                 />
                 <InfoTeamRowItem
                   label={"Score:"}

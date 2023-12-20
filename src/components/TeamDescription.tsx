@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import InfoTeamRowItem from "./InfoTeamRowItem";
 import { backgroundColor, textColors } from "../style/colors";
+import { Team } from "../screens/HomeScreen";
 
-const TeamDescription = ({ team }) => {
-  const { team_name, team_country, team_founded, team_badge } = team;
+const TeamDescription = ({ team }: { team: Team }) => {
+  const { team_name, team_country, team_founded, team_badge }: Team = team;
 
   return (
     <View style={styles.descriptionContainer}>

@@ -1,6 +1,17 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import { backgroundColor, textColors } from "../style/colors";
 
+type TeamMatchMainInfoProps = {
+  match_hometeam_name: string;
+  team_home_badge: string;
+  match_awayteam_name: string;
+  team_away_badge: string;
+  league_logo: string;
+  country_logo: string;
+  league_name: string;
+  country_name: string;
+};
+
 const TeamMatchMainInfo = ({
   match_hometeam_name,
   team_home_badge,
@@ -10,7 +21,7 @@ const TeamMatchMainInfo = ({
   country_logo,
   league_name,
   country_name,
-}) => {
+}: TeamMatchMainInfoProps) => {
   return (
     <>
       <View style={styles.matchTeamsContainer}>

@@ -1,12 +1,18 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import { textColors } from "../style/colors";
 
-const InfoTeamRowItem = ({ label, value, isImage }) => {
+type InfoTeamRowItemProps = {
+  label: string;
+  value: string;
+  isImage?: boolean;
+};
+
+const InfoTeamRowItem = ({ label, value, isImage }: InfoTeamRowItemProps) => {
   return (
     <View style={styles.rowsContainer}>
       <Text style={styles.infoLabel}>{label}</Text>
       {isImage ? (
-        <View style={styles.infoBadgeImageContainer}>
+        <View>
           <Image
             style={styles.infoBadgeImage}
             source={{
@@ -41,9 +47,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     marginTop: -20,
-  },
-  infoBadgeImageContainer: {
-    textAlign: "center",
   },
 });
 

@@ -1,9 +1,10 @@
 import { useRef } from "react";
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, TextInputProps, View, StyleSheet } from "react-native";
 import Icon from "@expo/vector-icons/FontAwesome";
+import { backgroundColor } from "../style/colors";
 
-const TeamTextInput = (props) => {
-  const inputRef = useRef();
+const TeamTextInput = (props: TextInputProps) => {
+  const inputRef = useRef<TextInput>(null);
 
   return (
     <View style={styles.searchSection}>
@@ -15,8 +16,8 @@ const TeamTextInput = (props) => {
       />
       <Icon
         onPress={() => {
-          inputRef.current.clear();
-          inputRef.current.focus();
+          inputRef.current?.clear();
+          inputRef.current?.focus();
         }}
         style={styles.clearIcon}
         name="times-circle"
@@ -30,7 +31,7 @@ const TeamTextInput = (props) => {
 const styles = StyleSheet.create({
   searchSection: {
     flexDirection: "row",
-    backgroundColor: "#575757",
+    backgroundColor: backgroundColor.secondary,
   },
   searchIcon: {
     padding: 10,

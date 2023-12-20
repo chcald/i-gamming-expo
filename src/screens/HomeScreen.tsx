@@ -1,43 +1,57 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
-
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TextInputProps } from "react-native";
 
 import * as data from "../assets/teams.json";
 import Autocomplete from "react-native-autocomplete-input";
 import TeamTextInput from "../components/TeamTextInput";
 import TeamItem from "../components/TeamItem";
 import { backgroundColor, textColors } from "../style/colors";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../Routes";
+
+export type Team = {
+  team_key?: string;
+  team_name?: string;
+  team_country?: string;
+  team_founded?: string;
+  team_badge?: string;
+};
+
+export type ResultScreenProps = NativeStackNavigationProp<
+  RootStackParamList,
+  "ResultScreen"
+>;
 
 const HomeScreen = () => {
-  const [teams, setTeams] = useState([]);
-  const [selectedValue, setSelectedValue] = useState({});
-  const [placeholder, setPlaceholder] = useState("Enter the team name");
-  const [query, setQuery] = useState("");
+  const [teams, setTeams] = useState<Array<Team>>([]);
+  const [selectedValue, setSelectedValue] = useState<Team>({});
+  const [placeholder, setPlaceholder] = useState<string>("Enter the team name");
+  const [query, setQuery] = useState<string>("");
 
-  const navigation = useNavigation();
+  const { navigate } = useNavigation<ResultScreenProps>();
 
   useEffect(() => {
-    setTeams(data?.teams);
+    return setTeams(data?.teams);
   }, []);
 
-  const suggestions = useMemo(() => {
+  const suggestions: Array<Team> = useMemo(() => {
     if (query) {
       // Making a case insensitive regular expression
-      const regex = new RegExp(`${query.trim()}`, "i");
-      
+      const regex: RegExp = new RegExp(`${query.trim()}`, "i");
+
       // Setting the filtered team array according the query
-      return teams?.filter((team) => team?.team_name.search(regex) >= 0);
+      return teams?.filter((team: Team) => team?.team_name.search(regex) >= 0);
     } else {
       // If the query is null then return blank
       return [];
     }
   }, [query, teams]);
 
-  const onPressTeam = (item) => {
+  const onPressTeam = (item: Team) => {
     setSelectedValue(item);
 
-    navigation.navigate({
+    navigate({
       name: "ResultScreen",
       params: {
         team: item,
@@ -59,7 +73,6 @@ const HomeScreen = () => {
           setSelectedValue({});
           setPlaceholder("");
         }}
-        containerStyle={styles.autocompleteContainer}
         // Data to show in suggestion
         data={suggestions}
         // Default value if you want to set something in input
@@ -72,12 +85,14 @@ const HomeScreen = () => {
         onChangeText={setQuery}
         flatListProps={{
           keyExtractor: (_, idx) => idx.toString(),
-          renderItem: ({ item }) => (
-            <TeamItem onPress={onPressTeam} item={item} />
+          renderItem: ({ item }: { item: Team }) => (
+            <TeamItem onPress={() => onPressTeam(item)} item={item} />
           ),
         }}
         placeholderTextColor={textColors.primary}
-        renderTextInput={(props) => <TeamTextInput {...props} />}
+        renderTextInput={(props: TextInputProps) => (
+          <TeamTextInput {...props} />
+        )}
       />
     </View>
   );
